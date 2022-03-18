@@ -39,7 +39,6 @@ class SlackAPI:
             user_mention_list = ""
             for user in user_list:
                 user_mention_list += '<@'+user+'> '
-            print(user_mention_list + properties.TEAM_MATCHING_MESSAGE)
             self.client.chat_postMessage(channel = channel_name, text=user_mention_list + properties.TEAM_MATCHING_MESSAGE)
     
     def post_init_message(self, channel_name):
