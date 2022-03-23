@@ -10,7 +10,6 @@ try:
 # 만약에 숫자 없으면 예외처리
     print(sys.argv[1])
     result = slack.get_reactions(channel_id, sys.argv[1])
-    # result = ['U037946MF5H', 'U037946MF51']
     divid_members = divide.divid_member(result)
     print(divid_members)
     slack.post_message(properties.CHANNEL_NAME, divid_members)
