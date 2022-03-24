@@ -4,6 +4,8 @@ def divid_member(members):
         if type(members) is str:
             members = list(members)
         
+        print(members)
+        print(type(members))
         d_members = []
     
         # set을 활용한 무작위 진행
@@ -20,13 +22,18 @@ def divid_member(members):
         while len(members) >= properties.LIMITED_NUMBER_OF_PEOPLE:
             temp_list = []
             for i in range(0, properties.LIMITED_NUMBER_OF_PEOPLE):
+                print(i)
                 temp_list.append(members.pop())
-            print(temp_list)
+            # print(temp_list)
             d_members.append(temp_list)
         
-        for member_list in d_members:
-            if len(members) <= 0: 
-                break
-            member_list.append(members.pop())
+        # 만약, 팀 갯수가 남은 사람 수보다 작다면, 남은 사람들로 팀을 하나 만든다.
+        if len(d_members) < len(members):
+            d_members.append(members)
+        else:    
+            for member_list in d_members:
+                if len(members) <= 0: 
+                    break
+                member_list.append(members.pop())
         
         return d_members

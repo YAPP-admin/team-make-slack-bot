@@ -28,8 +28,11 @@ class SlackAPI:
             if reaction.get('name') == properties.TARGET_REACTION :
                 # 요기서 users가 없거나 1명 있으면 사람이 없다는 예외 던짐
                 return_result = reaction.get('users') 
-                if return_result <= 1:
+                print(len(return_result))
+                print(return_result)
+                if len(return_result) <= 1:
                     raise Exception('팀 만들만큼 사람이 없어요!')
+                return return_result
     
     # list들의 list를 받아서 post한다. 
     def post_message(self, channel_name, user_lists):
