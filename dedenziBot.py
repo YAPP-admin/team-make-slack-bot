@@ -28,21 +28,14 @@ class SlackAPI:
             if reaction.get('name') == properties.TARGET_REACTION :
                 # 요기서 users가 없거나 1명 있으면 사람이 없다는 예외 던짐
                 return_result = reaction.get('users') 
-                print(len(return_result))
-                print(return_result)
                 if len(return_result) <= 1:
                     raise Exception('팀 만들만큼 사람이 없어요!')
                 return return_result
     
     # list들의 list를 받아서 post한다. 
-    def post_message(self, channel_name, user_lists):
-        
-        # 이런식으로 유저를 mention할 수 있다.
-        for user_list in user_lists:
-            user_mention_list = ""
-            for user in user_list:
-                user_mention_list += '<@'+user+'> '
-            self.client.chat_postMessage(channel = channel_name, text=user_mention_list + properties.TEAM_MATCHING_MESSAGE)
+    def post_message(self, channel_name, message_list):
+        for message in message_list:
+            self.client.chat_postMessage(channel = channel_name, text=message + properties.TEAM_MATCHING_MESSAGE)
     
     def post_init_message(self, channel_name):
         result = self.client.chat_postMessage(channel=channel_name, text= properties.SLACK_INIT_MESSAGE)
