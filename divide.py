@@ -4,8 +4,6 @@ def divid_member(members):
         if type(members) is str:
             members = list(members)
         
-        print(members)
-        print(type(members))
         d_members = []
     
         # set을 활용한 무작위 진행
@@ -22,7 +20,6 @@ def divid_member(members):
         while len(members) >= properties.LIMITED_NUMBER_OF_PEOPLE:
             temp_list = []
             for i in range(0, properties.LIMITED_NUMBER_OF_PEOPLE):
-                print(i)
                 temp_list.append(members.pop())
             # print(temp_list)
             d_members.append(temp_list)
@@ -37,3 +34,26 @@ def divid_member(members):
                 member_list.append(members.pop())
         
         return d_members
+    
+def member_lists_to_message_lists(member_list):
+    # member_list가 만약 여러 팀일 때면, user들이 들어가는 String list로 변환해주기
+    # member_list에 list가 하나라면, user들이 들어가는 String 변환해서 던져주기
+    result_lists = []
+    user_mention_list = ""
+            # 이런식으로 유저를 mention할 수 있다.
+    for user_list in member_list:
+        list_type = type(user_list)
+        if type(user_list) is list:
+            user_mention_list = ""
+            for user in user_list:
+                user_mention_list += '<@'+user+'> '
+            result_lists.append(user_mention_list) 
+            user_mention_list = ""
+                
+        else :
+            user_mention_list += '<@'+user_list+'> '
+            
+    if len(user_mention_list) != 0:
+        result_lists.append(user_mention_list)
+    
+    return result_lists
