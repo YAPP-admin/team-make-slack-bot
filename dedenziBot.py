@@ -7,11 +7,18 @@ class SlackAPI:
         
     # 채널이 없으면 예외던지기
     def get_channel_id(self, channel_name):
+        channel_id=""
         result = self.client.conversations_list()
         
-        channels = result.data['channels']
-        # 채널이 없으면 여기서 IndexError가 터짐
-        channel = list(filter(lambda c: c["name"] == channel_name, channels))[0]
+        try:
+            channels = result.data['channels']
+            # 채널이 없으면 여기서 IndexError가 터짐
+            channel = list(filter(lambda c: c["name"] == channel_name, channels))[0]
+        except IndexError:
+            result = self.client.conversations_list(types=["private_channel"])
+            channels = result.data['channels']
+            channel = list(filter(lambda c: c["name"] == channel_name, channels))[0]
+            
         channel_id = channel["id"]
         
         return channel_id
