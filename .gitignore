@@ -25,4 +25,4 @@ archive.zip
 .*.sw?
 
 #properties
-properties.py
+.properties.py
