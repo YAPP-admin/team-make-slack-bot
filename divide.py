@@ -4,6 +4,9 @@ def divid_member(members):
         if type(members) is str:
             members = list(members)
         
+        print("/-----------------------")
+        print(members)
+        print("/-----------------------")
         d_members = []
     
         # set을 활용한 무작위 진행
