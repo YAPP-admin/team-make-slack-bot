@@ -1,0 +1,5 @@
+uvicorn
+fastapi
+slack
+slack-sdk
+slackclient
