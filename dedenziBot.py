@@ -38,6 +38,10 @@ class SlackAPI:
                 if len(return_result) <= 1:
                     raise Exception('팀 만들만큼 사람이 없어요!')
                 return return_result
+            
+    def get_thread_comment(self, channel_id, timestamp):
+        result = self.client.conversations_replies(channel = channel_id, ts = timestamp)
+        return result.data['messages'][0].get('reply_users')
     
     # list들의 list를 받아서 post한다. 
     def post_message(self, channel_name, message_list):
@@ -50,3 +54,5 @@ class SlackAPI:
     
     def post_error_message(self, channel_name, error_contents):
         self.client.chat_postMessage(channel=channel_name, text = error_contents)
+        
+        
