@@ -34,8 +34,6 @@ class SlackAPI:
         for reaction in reactions:
             if reaction.get('name') == properties.TARGET_REACTION :
                 # 요기서 users가 없거나 1명 있으면 사람이 없다는 예외 던짐
-                print(reaction)
-                
                 return_result = reaction.get('users') 
                 if len(return_result) <= 1:
                     raise Exception('팀 만들만큼 사람이 없어요!')

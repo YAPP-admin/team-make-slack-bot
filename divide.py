@@ -24,7 +24,7 @@ def divid_member(members):
             temp_list = []
             for i in range(0, properties.LIMITED_NUMBER_OF_PEOPLE):
                 temp_list.append(members.pop())
-            # print(temp_list)
+                
             d_members.append(temp_list)
         
         # 만약, 팀 갯수가 남은 사람 수보다 작다면, 남은 사람들로 팀을 하나 만든다.
