@@ -21,6 +21,6 @@ except IndexError:
 except KeyError:
     slack.post_error_message(channel_id, "등록된 이모지가 없는데요??? 확인 후 재시도 부탁드려요!")
 
-# except Exception as e:
-#     slack.post_error_message(channel_id, "참여자가 너무 적네요..! 저 바빠요.")
+except Exception as e:
+    slack.post_error_message(channel_id, "참여자가 너무 적네요..! 저 바빠요.")
 
